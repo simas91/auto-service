@@ -19,7 +19,9 @@ public class VehicleController {
                         "FD60LWM",
                         "Honda",
                         "Civic",
-                        2011,                        91300),
+
+                        2011,
+                        91300),
                 new Vehicle(UUID.randomUUID(),
                         "AE04SWJ",
                         "Yamaha",
