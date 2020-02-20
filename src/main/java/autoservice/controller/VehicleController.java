@@ -15,8 +15,18 @@ public class VehicleController {
     @GetMapping
     public List<Vehicle> getAllVehicles() {
         return List.of(
-                new Vehicle(UUID.randomUUID(), "FD60LWM", "Honda", "Civic", 2011, 91300),
-                new Vehicle(UUID.randomUUID(), "AE04SWJ", "Yamaha", "R1", 2004, 15233)
+                new Vehicle(UUID.randomUUID(),
+                        "FD60LWM",
+                        "Honda",
+                        "Civic",
+                        2011,
+                        91300),
+                new Vehicle(UUID.randomUUID(),
+                        "AE04SWJ",
+                        "Yamaha",
+                        "R1",
+                        2004,
+                        15233)
         );
     }
 
