@@ -9,10 +9,8 @@ import java.util.regex.Pattern;
 public class RegistrationValidator implements Predicate<String> {
 
     private static final Predicate<String> IS_VALID =
-            Pattern.compile(
-                    "\\D\\D\\d\\d\\D\\D\\D",
-                    Pattern.CASE_INSENSITIVE
-            ).asPredicate();
+            Pattern.compile("\\D\\D\\d\\d\\D\\D\\D", Pattern.CASE_INSENSITIVE)
+                    .asPredicate();
 
     @Override
     public boolean test(String registration) {

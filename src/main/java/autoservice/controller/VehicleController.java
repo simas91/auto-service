@@ -24,5 +24,4 @@ public class VehicleController {
     public void addNewVehicle(@RequestBody @Valid Vehicle vehicle) {
         vehicleService.addNewVehicle(vehicle);
     }
-
 }

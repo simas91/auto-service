@@ -35,5 +35,4 @@ public class Vehicle {
     @JsonProperty("mileage")
     @NonNull
     private final Integer mileage;
-
 }
