@@ -3,9 +3,7 @@ package autoservice.controller;
 import autoservice.domain.Vehicle;
 import autoservice.service.VehicleService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +17,11 @@ public class VehicleController {
     @GetMapping
     public List<Vehicle> getAllVehicles() {
         return vehicleService.getAllVehicles();
+    }
+
+    @PostMapping
+    public void addNewVehicle(@RequestBody Vehicle vehicle) {
+        vehicleService.addNewVehicle(vehicle);
     }
 
 }

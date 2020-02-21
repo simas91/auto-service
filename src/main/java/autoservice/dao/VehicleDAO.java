@@ -30,6 +30,28 @@ public class VehicleDAO {
         return jdbcTemplate.query(sql, mapVehicleFromDb());
     }
 
+    public int insertVehicle(UUID vehicleId, Vehicle vehicle) {
+        String sql = "" +
+                "INSERT INTO vehicle (" +
+                "vehicle_id, " +
+                "registration, " +
+                "manufacturer, " +
+                "model, " +
+                "year, " +
+                "mileage) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+
+        return jdbcTemplate.update(
+                sql,
+                vehicleId,
+                vehicle.getRegistration(),
+                vehicle.getManufacturer(),
+                vehicle.getModel(),
+                vehicle.getYear(),
+                vehicle.getMileage()
+        );
+    }
+
     private RowMapper<Vehicle> mapVehicleFromDb() {
         return (resultSet, i) -> {
 
