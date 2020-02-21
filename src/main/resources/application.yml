@@ -1,7 +1,9 @@
+# application path
 server:
   servlet:
     context-path: /api
 
+# database connection
 app:
   datasource:
     jdbc-url: jdbc:postgresql://localhost:5432/vehicle

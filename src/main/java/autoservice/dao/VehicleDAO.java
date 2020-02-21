@@ -1,7 +1,7 @@
 package autoservice.dao;
 
 import autoservice.domain.Vehicle;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -10,14 +10,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
+@AllArgsConstructor
 public class VehicleDAO {
 
     private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public VehicleDAO(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     public List<Vehicle> selectAllVehicles() {
 
