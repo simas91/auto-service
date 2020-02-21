@@ -1,7 +1,9 @@
 package autoservice.service;
 
+import autoservice.RegistrationValidator;
 import autoservice.dao.VehicleDAO;
 import autoservice.domain.Vehicle;
+import autoservice.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,18 @@ import java.util.UUID;
 public class VehicleService {
 
     private final VehicleDAO vehicleDAO;
+    private final RegistrationValidator registrationValidator;
 
     public List<Vehicle> getAllVehicles() {
         return vehicleDAO.selectAllVehicles();
     }
 
     public  void addNewVehicle(Vehicle vehicle) {
+
+        if (!registrationValidator.test(vehicle.getRegistration())) {
+            throw new ApiRequestException(vehicle.getRegistration() + " is not valid registration number");
+        }
+
         vehicleDAO.insertVehicle(UUID.randomUUID(), vehicle);
     }
 }

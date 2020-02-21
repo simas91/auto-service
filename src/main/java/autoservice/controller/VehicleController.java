@@ -5,6 +5,7 @@ import autoservice.service.VehicleService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class VehicleController {
     }
 
     @PostMapping
-    public void addNewVehicle(@RequestBody Vehicle vehicle) {
+    public void addNewVehicle(@RequestBody @Valid Vehicle vehicle) {
         vehicleService.addNewVehicle(vehicle);
     }
 
