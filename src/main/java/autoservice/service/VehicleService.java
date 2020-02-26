@@ -27,6 +27,10 @@ public class VehicleService {
             throw new ApiRequestException(vehicle.getRegistration() + " is not valid registration number");
         }
 
+        if (vehicleDAO.isRegistrationTaken(vehicle.getRegistration())) {
+            throw new ApiRequestException("Registration number: " + vehicle.getRegistration() + " already exists");
+        }
+
         vehicleDAO.insertVehicle(UUID.randomUUID(), vehicle);
     }
 }

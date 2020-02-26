@@ -30,7 +30,7 @@ public class VehicleDAO {
         return jdbcTemplate.query(sql, mapVehicleFromDb());
     }
 
-    public int insertVehicle(UUID vehicleId, Vehicle vehicle) {
+    public void insertVehicle(UUID vehicleId, Vehicle vehicle) {
         String sql = "" +
                 "INSERT INTO vehicle (" +
                 "vehicle_id, " +
@@ -41,7 +41,7 @@ public class VehicleDAO {
                 "mileage) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
-        return jdbcTemplate.update(
+        jdbcTemplate.update(
                 sql,
                 vehicleId,
                 vehicle.getRegistration(),
@@ -64,5 +64,22 @@ public class VehicleDAO {
 
             return new Vehicle(vehicleId, registration, manufacturer, model, year, mileage);
         };
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public boolean isRegistrationTaken(String registration) {
+
+        String sql = "" +
+                "SELECT EXISTS ( " +
+                "SELECT 1 " +
+                "FROM vehicle " +
+                "WHERE registration = ? " +
+                ")";
+
+        return jdbcTemplate.queryForObject(
+                sql,
+                new Object[] {registration},
+                (resultSet, i) -> resultSet.getBoolean(1)
+        );
     }
 }
