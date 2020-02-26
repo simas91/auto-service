@@ -33,4 +33,8 @@ public class VehicleService {
 
         vehicleDAO.insertVehicle(UUID.randomUUID(), vehicle);
     }
+
+    public Vehicle selectVehicle(UUID id) {
+        return vehicleDAO.selectVehicle(id);
+    }
 }

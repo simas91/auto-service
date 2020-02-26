@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -23,5 +24,10 @@ public class VehicleController {
     @PostMapping
     public void addNewVehicle(@RequestBody @Valid Vehicle vehicle) {
         vehicleService.addNewVehicle(vehicle);
+    }
+
+    @RequestMapping("vehicle/{id}")
+    public Vehicle selectVehicle(@PathVariable UUID id) {
+        return vehicleService.selectVehicle(id);
     }
 }

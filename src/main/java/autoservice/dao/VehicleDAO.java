@@ -2,6 +2,7 @@ package autoservice.dao;
 
 import autoservice.domain.Vehicle;
 import lombok.AllArgsConstructor;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -32,28 +33,15 @@ public class VehicleDAO {
         return jdbcTemplate.query(sql, mapVehicleFromDb());
     }
 
-    public void insertVehicle(UUID vehicleId, Vehicle vehicle) {
-        String sql = "" +
-                "INSERT INTO vehicle (" +
-                "vehicle_id, " +
-                "registration, " +
-                "manufacturer, " +
-                "model, " +
-                "year, " +
-                "mileage, " +
-                "mot ) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public Vehicle selectVehicle(UUID id) {
+        String sql = "SELECT * FROM vehicle WHERE vehicle_id = ?";
 
-        jdbcTemplate.update(
+        return jdbcTemplate.queryForObject(
                 sql,
-                vehicleId,
-                vehicle.getRegistration(),
-                vehicle.getManufacturer(),
-                vehicle.getModel(),
-                vehicle.getYear(),
-                vehicle.getMileage(),
-                vehicle.getMot()
+                mapVehicleFromDb(),
+                id
         );
+
     }
 
     private RowMapper<Vehicle> mapVehicleFromDb() {
@@ -85,6 +73,30 @@ public class VehicleDAO {
                 sql,
                 new Object[] {registration},
                 (resultSet, i) -> resultSet.getBoolean(1)
+        );
+    }
+
+    public void insertVehicle(UUID vehicleId, Vehicle vehicle) {
+        String sql = "" +
+                "INSERT INTO vehicle (" +
+                "vehicle_id, " +
+                "registration, " +
+                "manufacturer, " +
+                "model, " +
+                "year, " +
+                "mileage, " +
+                "mot ) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        jdbcTemplate.update(
+                sql,
+                vehicleId,
+                vehicle.getRegistration(),
+                vehicle.getManufacturer(),
+                vehicle.getModel(),
+                vehicle.getYear(),
+                vehicle.getMileage(),
+                vehicle.getMot()
         );
     }
 }
