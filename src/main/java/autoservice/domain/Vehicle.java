@@ -7,6 +7,7 @@ import lombok.NonNull;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 import java.util.UUID;
 
 @ToString
@@ -35,4 +36,8 @@ public class Vehicle {
     @JsonProperty("mileage")
     @NonNull
     private final Integer mileage;
+
+    @JsonProperty("mot")
+    @NonNull
+    private final Date mot;
 }

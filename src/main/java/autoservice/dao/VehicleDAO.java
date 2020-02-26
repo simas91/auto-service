@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +25,8 @@ public class VehicleDAO {
                 "manufacturer, " +
                 "model, " +
                 "year, " +
-                "mileage " +
+                "mileage, " +
+                "mot " +
                 "FROM vehicle";
 
         return jdbcTemplate.query(sql, mapVehicleFromDb());
@@ -38,8 +40,9 @@ public class VehicleDAO {
                 "manufacturer, " +
                 "model, " +
                 "year, " +
-                "mileage) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+                "mileage, " +
+                "mot ) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(
                 sql,
@@ -48,7 +51,8 @@ public class VehicleDAO {
                 vehicle.getManufacturer(),
                 vehicle.getModel(),
                 vehicle.getYear(),
-                vehicle.getMileage()
+                vehicle.getMileage(),
+                vehicle.getMot()
         );
     }
 
@@ -61,8 +65,9 @@ public class VehicleDAO {
             String model = resultSet.getString("model");
             int year = resultSet.getInt("year");
             int mileage = resultSet.getInt("mileage");
+            Date date = resultSet.getDate("mot");
 
-            return new Vehicle(vehicleId, registration, manufacturer, model, year, mileage);
+            return new Vehicle(vehicleId, registration, manufacturer, model, year, mileage, date);
         };
     }
 
