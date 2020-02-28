@@ -2,7 +2,6 @@ package autoservice.dao;
 
 import autoservice.domain.Vehicle;
 import lombok.AllArgsConstructor;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -41,7 +40,6 @@ public class VehicleDAO {
                 mapVehicleFromDb(),
                 id
         );
-
     }
 
     private RowMapper<Vehicle> mapVehicleFromDb() {

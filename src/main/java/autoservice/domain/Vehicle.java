@@ -38,6 +38,5 @@ public class Vehicle {
     private final Integer mileage;
 
     @JsonProperty("mot")
-    @NonNull
     private final Date mot;
 }

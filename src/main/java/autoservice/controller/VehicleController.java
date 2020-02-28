@@ -26,8 +26,9 @@ public class VehicleController {
         vehicleService.addNewVehicle(vehicle);
     }
 
-    @RequestMapping("vehicle/{id}")
+    @RequestMapping("{id}")
     public Vehicle selectVehicle(@PathVariable UUID id) {
         return vehicleService.selectVehicle(id);
     }
+
 }
