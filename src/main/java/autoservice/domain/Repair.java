@@ -13,18 +13,22 @@ import java.util.UUID;
 @ToString
 @Getter
 @AllArgsConstructor
-public class Braking {
+public class Repair {
 
     @JsonProperty("vehicleId")
     private final UUID vehicleId;
 
+    @JsonProperty("department")
+    @NotBlank
+    private final String department;
+
     @JsonProperty("section")
-    @NonNull
-    private final int section;
+    @NotBlank
+    private final String section;
 
     @JsonProperty("part")
-    @NonNull
-    private final int part;
+    @NotBlank
+    private final String part;
 
     @JsonProperty("dateOfService")
     @NotBlank
@@ -40,8 +44,8 @@ public class Braking {
     @JsonProperty("milesOfExpiration")
     private final int milesOfExpiration;
 
-    @JsonProperty("position")
-    private final String position;
+    @JsonProperty("positionOrQuantity")
+    private final String positionOrQuantity;
 
     @JsonProperty("text")
     private final String info;
