@@ -16,7 +16,11 @@ import java.util.UUID;
 public class Repair {
 
     @JsonProperty("vehicleId")
+    @NotBlank
     private final UUID vehicleId;
+
+    @JsonProperty("mechanicId")
+    private final UUID mechanicId;
 
     @JsonProperty("department")
     @NotBlank

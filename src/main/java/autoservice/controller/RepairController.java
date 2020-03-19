@@ -20,5 +20,10 @@ public class RepairController {
         return repairService.getAllService(id, department, section, part);
     }
 
+    @PostMapping
+    public void addNewRepair (@RequestBody Repair repair) {
+        repairService.addNewRepair(repair);
+    }
+
 }
 

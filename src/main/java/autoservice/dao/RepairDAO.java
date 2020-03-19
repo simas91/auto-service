@@ -34,6 +34,7 @@ public class RepairDAO {
         return (resultSet, i) -> {
 
             UUID vehicleId = UUID.fromString(resultSet.getString("vehicle_id"));
+            UUID mechanicId = UUID.fromString(resultSet.getString("mechanic_id"));
             String department = resultSet.getString("department");
             String section = resultSet.getString("section");
             String part = resultSet.getString("part");
@@ -45,8 +46,40 @@ public class RepairDAO {
             String info = resultSet.getString("info");
 
 
-            return new Repair(vehicleId, department, section, part, dateOfService, dateOfExpiration, milesOfService, milesOfExpiration, position, info);
+            return new Repair(vehicleId, mechanicId, department, section, part, dateOfService, dateOfExpiration, milesOfService, milesOfExpiration, position, info);
         };
+    }
+
+    public void insertNewRepair(Repair repair) {
+        String sql = "" +
+                "INSERT INTO service (" +
+                "vehicle_id, " +
+                "mechanic_id, " +
+                "department, " +
+                "section, " +
+                "part, " +
+                "date_of_service, " +
+                "date_of_expiration, " +
+                "miles_of_service, " +
+                "miles_of_expiration, " +
+                "position_or_quantity, " +
+                "info ) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        jdbcTemplate.update(
+                sql,
+                repair.getVehicleId(),
+                repair.getMechanicId(),
+                repair.getDepartment(),
+                repair.getSection(),
+                repair.getPart(),
+                repair.getDateOfService(),
+                repair.getDateOfExpiration(),
+                repair.getMilesOfService(),
+                repair.getMilesOfExpiration(),
+                repair.getPositionOrQuantity(),
+                repair.getInfo()
+        );
     }
 }
 

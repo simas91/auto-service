@@ -97,4 +97,28 @@ public class VehicleDAO {
                 vehicle.getMot()
         );
     }
+
+    public void updateVehicle(UUID id, Vehicle vehicle) {
+
+        String sql = "" +
+                "UPDATE vehicle SET " +
+                "registration = ?, " +
+                "manufacturer = ?, " +
+                "model = ?, " +
+                "year = ?, " +
+                "mileage = ?, " +
+                "mot = ? " +
+                "WHERE vehicle_id = ? ";
+
+        jdbcTemplate.update(
+                sql,
+                vehicle.getRegistration(),
+                vehicle.getManufacturer(),
+                vehicle.getModel(),
+                vehicle.getYear(),
+                vehicle.getMileage(),
+                vehicle.getMot(),
+                id
+        );
+    }
 }

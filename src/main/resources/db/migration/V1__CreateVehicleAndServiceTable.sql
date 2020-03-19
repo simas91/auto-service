@@ -8,20 +8,6 @@ CREATE TABLE IF NOT EXISTS vehicle (
     mot Date NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS service (
-    vehicle_id UUID NOT NULL REFERENCES vehicle (vehicle_id),
-    mechanic_id UUID NOT NULL REFERENCES mechanic (mechanic_id),
-    department VARCHAR (50),
-    section VARCHAR (50),
-    part VARCHAR (50),
-    date_of_service date NOT NULL,
-    date_of_expiration date,
-    miles_of_service INTEGER NOT NULL,
-    miles_of_expiration INTEGER,
-    position_or_quantity VARCHAR (100),
-    info TEXT
-);
-
 CREATE TABLE IF NOT EXISTS driver (
     driver_id UUID PRIMARY KEY NOT NULL,
     name VARCHAR (50),
@@ -53,5 +39,19 @@ CREATE TABLE IF NOT EXISTS driver_records (
     vehicle_miles_at_start INTEGER,
     vehicle_miles_at_finish INTEGER,
     miles_done INTEGER,
+    info TEXT
+);
+
+CREATE TABLE IF NOT EXISTS service (
+    vehicle_id UUID NOT NULL REFERENCES vehicle (vehicle_id),
+    mechanic_id UUID REFERENCES mechanic (mechanic_id),
+    department VARCHAR (50),
+    section VARCHAR (50),
+    part VARCHAR (50),
+    date_of_service date NOT NULL,
+    date_of_expiration date,
+    miles_of_service INTEGER NOT NULL,
+    miles_of_expiration INTEGER,
+    position_or_quantity VARCHAR (100),
     info TEXT
 );

@@ -23,18 +23,38 @@ public class VehicleService {
 
     public  void addNewVehicle(Vehicle vehicle) {
 
-        if (!registrationValidator.test(vehicle.getRegistration())) {
-            throw new ApiRequestException(vehicle.getRegistration() + " is not valid registration number");
+        if(isRegistrationNotTaken(vehicle) & isRegistrationValid(vehicle)) {
+            vehicleDAO.insertVehicle(UUID.randomUUID(), vehicle);
         }
+    }
+
+    public Vehicle selectVehicle(UUID id) {
+        return vehicleDAO.selectVehicle(id);
+    }
+
+    public void updateVehicle(UUID id, Vehicle vehicle) {
+
+        if(isRegistrationValid(vehicle)){
+            vehicleDAO.updateVehicle(id, vehicle);
+        }
+    }
+
+
+
+    private boolean isRegistrationNotTaken(Vehicle vehicle) {
 
         if (vehicleDAO.isRegistrationTaken(vehicle.getRegistration())) {
             throw new ApiRequestException("Registration number: " + vehicle.getRegistration() + " already exists");
         }
 
-        vehicleDAO.insertVehicle(UUID.randomUUID(), vehicle);
+        return true;
     }
 
-    public Vehicle selectVehicle(UUID id) {
-        return vehicleDAO.selectVehicle(id);
+    private boolean isRegistrationValid(Vehicle vehicle) {
+
+        if (!registrationValidator.test(vehicle.getRegistration())) {
+            throw new ApiRequestException(vehicle.getRegistration() + " is not valid registration number");
+        }
+        return true;
     }
 }

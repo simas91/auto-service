@@ -17,5 +17,9 @@ public class RepairService {
     public List<Repair> getAllService(UUID id, String department, String section, String part) {
         return repairDAO.getAllService(id, department, section, part);
     }
+
+    public void addNewRepair(Repair repair) {
+        repairDAO.insertNewRepair(repair);
+    }
 }
 

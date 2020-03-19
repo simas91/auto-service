@@ -22,13 +22,18 @@ public class VehicleController {
     }
 
     @PostMapping
-    public void addNewVehicle(@RequestBody @Valid Vehicle vehicle) {
+    public void addNewVehicle(@RequestBody Vehicle vehicle) {
         vehicleService.addNewVehicle(vehicle);
     }
 
     @RequestMapping("{id}")
     public Vehicle selectVehicle(@PathVariable UUID id) {
         return vehicleService.selectVehicle(id);
+    }
+
+    @PostMapping("{id}")
+    public void updateVehicle(@PathVariable UUID id, @RequestBody Vehicle vehicle) {
+        vehicleService.updateVehicle(id, vehicle);
     }
 
 }
