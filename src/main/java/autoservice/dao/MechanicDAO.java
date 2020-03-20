@@ -58,7 +58,7 @@ public class MechanicDAO {
                 "date_of_birth, " +
                 "phone_number, " +
                 "date_of_start, " +
-                "date_of_leave ) " +
+                "date_of_leave) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(
@@ -107,6 +107,5 @@ public class MechanicDAO {
                 mechanic.getDateOfLeave(),
                 id
         );
-
     }
 }
