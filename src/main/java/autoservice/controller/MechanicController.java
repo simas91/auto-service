@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -22,6 +23,16 @@ public class MechanicController {
     @PostMapping()
     public void addNewMechanic(@RequestBody Mechanic mechanic) {
         mechanicService.addNewMechanic(mechanic);
+    }
+
+    @RequestMapping("{id}")
+    public Mechanic selectMechanic(@PathVariable UUID id) {
+        return mechanicService.selectMechanic(id);
+    }
+
+    @PostMapping("{id}")
+    public void updateMechanic(@PathVariable UUID id, @RequestBody Mechanic mechanic) {
+        mechanicService.updateMechanic(id, mechanic);
     }
 
 }

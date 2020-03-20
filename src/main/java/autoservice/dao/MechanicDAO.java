@@ -73,4 +73,40 @@ public class MechanicDAO {
         );
 
     }
+
+    public Mechanic selectMechanic(UUID id) {
+
+        String sql = "SELECT * FROM mechanic WHERE mechanic_id = ?";
+
+        return jdbcTemplate.queryForObject(
+                sql,
+                mapMechanicFromDb(),
+                id
+        );
+    }
+
+    public void updateMechanic(UUID id, Mechanic mechanic) {
+
+        String sql = "" +
+                "UPDATE mechanic SET " +
+                "name = ?, " +
+                "surname = ?, " +
+                "date_of_birth = ?, " +
+                "phone_number = ?, " +
+                "date_of_start = ?, " +
+                "date_of_leave = ? " +
+                "WHERE mechanic_id = ? ";
+
+        jdbcTemplate.update(
+                sql,
+                mechanic.getName(),
+                mechanic.getSurname(),
+                mechanic.getDateOfBirth(),
+                mechanic.getPhoneNumber(),
+                mechanic.getDateOfStart(),
+                mechanic.getDateOfLeave(),
+                id
+        );
+
+    }
 }

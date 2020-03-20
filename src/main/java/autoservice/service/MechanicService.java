@@ -21,4 +21,12 @@ public class MechanicService {
     public void addNewMechanic(Mechanic mechanic) {
         mechanicDAO.addNewMechanic(UUID.randomUUID(), mechanic);
     }
+
+    public Mechanic selectMechanic(UUID id) {
+        return mechanicDAO.selectMechanic(id);
+    }
+
+    public void updateMechanic(UUID id, Mechanic mechanic) {
+        mechanicDAO.updateMechanic(id, mechanic);
+    }
 }
