@@ -7,6 +7,7 @@ import lombok.NonNull;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
@@ -23,16 +24,16 @@ public class Repair {
     private final UUID mechanicId;
 
     @JsonProperty("department")
-    @NotBlank
-    private final String department;
+    @NotNull
+    private final int department;
 
     @JsonProperty("section")
-    @NotBlank
-    private final String section;
+    @NotNull
+    private final int section;
 
     @JsonProperty("part")
-    @NotBlank
-    private final String part;
+    @NotNull
+    private final int part;
 
     @JsonProperty("dateOfService")
     @NotBlank

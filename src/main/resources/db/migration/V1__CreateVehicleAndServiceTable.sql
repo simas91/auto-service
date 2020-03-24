@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS driver_records (
 CREATE TABLE IF NOT EXISTS service (
     vehicle_id UUID NOT NULL REFERENCES vehicle (vehicle_id),
     mechanic_id UUID REFERENCES mechanic (mechanic_id),
-    department VARCHAR (50),
-    section VARCHAR (50),
-    part VARCHAR (50),
+    department INTEGER NOT NULL,
+    section INTEGER NOT NULL,
+    part INTEGER NOT NULL,
     date_of_service date NOT NULL,
     date_of_expiration date,
     miles_of_service INTEGER NOT NULL,

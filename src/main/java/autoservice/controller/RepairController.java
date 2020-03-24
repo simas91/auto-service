@@ -15,9 +15,24 @@ public class RepairController {
 
     private final RepairService repairService;
 
-    @RequestMapping("{department}/{section}/{part}/{id}")
-    public List<Repair> getAllService(@PathVariable UUID id, @PathVariable String department, @PathVariable String section, @PathVariable String part) {
-        return repairService.getAllService(id, department, section, part);
+    @GetMapping
+    public List<Repair> getAllRepairs() {
+        return repairService.getAllRepairs();
+    }
+
+    @RequestMapping("{vehicleId}/{department}/{section}/{part}")
+    public List<Repair> getSpecificVehicleRepair(@PathVariable UUID vehicleId, @PathVariable int department, @PathVariable int section, @PathVariable int part) {
+        return repairService.getSpecificVehicleRepair(vehicleId, department, section, part);
+    }
+
+    @RequestMapping("mechanic/{mechanicId}/{department}/{section}/{part}")
+    public List<Repair> getSpecificMechanicRepair(@PathVariable UUID mechanicId, @PathVariable int department, @PathVariable int section, @PathVariable int part) {
+        return repairService.getSpecificMechanicRepair(mechanicId, department, section, part);
+    }
+
+    @RequestMapping("{mechanicId}")
+    public List<Repair> getAllSelectedMechanicRepair(@PathVariable UUID mechanicId) {
+        return repairService.getAllSelectedMechanicRepair(mechanicId);
     }
 
     @PostMapping
