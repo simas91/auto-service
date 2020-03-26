@@ -1,7 +1,6 @@
 package autoservice.dao;
 
 import autoservice.domain.Repair;
-import autoservice.domain.Vehicle;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

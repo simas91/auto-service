@@ -52,7 +52,7 @@ public class Repair {
     @JsonProperty("positionOrQuantity")
     private final String positionOrQuantity;
 
-    @JsonProperty("text")
+    @JsonProperty("info")
     private final String info;
 
 }
