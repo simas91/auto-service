@@ -25,4 +25,8 @@ public class DriverRecordsService {
     public List<DriverRecords> getAllRecordsByVehicle(UUID vehicleId) {
         return driverRecordsDAO.getAllRecordsByVehicle(vehicleId);
     }
+
+    public void addNewRepair(DriverRecords driverRecords) {
+        driverRecordsDAO.addNewRecord(driverRecords);
+    }
 }

@@ -28,9 +28,6 @@ public class DriverRecords {
     @JsonProperty("dateOfFinish")
     private final Date dateOfFinish;
 
-    @JsonProperty("interval")
-    private final String interval;
-
     @JsonProperty("milesAtStart")
     private final int milesAtStart;
 

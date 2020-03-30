@@ -16,8 +16,7 @@ CREATE TABLE IF NOT EXISTS driver (
     phone_number VARCHAR (13),
     date_of_start date,
     date_of_leave date,
-    miles_done INTEGER,
-    hours_done SMALLINT
+    miles_done INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS mechanic (
@@ -35,7 +34,6 @@ CREATE TABLE IF NOT EXISTS driver_records (
     driver_id UUID NOT NULL REFERENCES driver (driver_id),
     date_of_start timestamp,
     date_of_finish timestamp,
-    total_time interval,
     vehicle_miles_at_start INTEGER,
     vehicle_miles_at_finish INTEGER,
     miles_done INTEGER,

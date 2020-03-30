@@ -24,7 +24,6 @@ public class DriverRecordsDAO {
                 "driver_id, " +
                 "date_of_start, " +
                 "date_of_finish, " +
-                "total_time, " +
                 "vehicle_miles_at_start, " +
                 "vehicle_miles_at_finish, " +
                 "miles_done, " +
@@ -41,14 +40,13 @@ public class DriverRecordsDAO {
             UUID driverId = UUID.fromString(resultSet.getString("driver_id"));
             Date dateOfStart = resultSet.getDate("date_of_start");
             Date dateOfFinish = resultSet.getDate("date_of_finish");
-            String interval = resultSet.getString("total_time");
             int milesAtStart = resultSet.getInt("vehicle_miles_at_start");
             int milesAtFinish = resultSet.getInt("vehicle_miles_at_finish");
             int milesDone = resultSet.getInt("miles_done");
             String info = resultSet.getString("info");
 
 
-            return new DriverRecords(vehicleId, driverId, dateOfStart, dateOfFinish, interval, milesAtStart, milesAtFinish, milesDone, info);
+            return new DriverRecords(vehicleId, driverId, dateOfStart, dateOfFinish, milesAtStart, milesAtFinish, milesDone, info);
         };
     }
 
@@ -72,6 +70,35 @@ public class DriverRecordsDAO {
                 sql,
                 mapRecordsFromDb(),
                 vehicleId
+        );
+
+    }
+
+    public void addNewRecord(DriverRecords driverRecords){
+
+        String sql = "" +
+                "INSERT INTO driver_records (" +
+                "vehicle_id, " +
+                "driver_id, " +
+                "date_of_start, " +
+                "date_of_finish, " +
+                "vehicle_miles_at_start, " +
+                "vehicle_miles_at_finish, " +
+                "miles_done, " +
+                "info ) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+        jdbcTemplate.update(
+                sql,
+                driverRecords.getVehicleId(),
+                driverRecords.getDriverId(),
+                driverRecords.getDateOfStart(),
+                driverRecords.getDateOfFinish(),
+                driverRecords.getMilesAtStart(),
+                driverRecords.getMilesAtFinish(),
+                driverRecords.getMilesDone(),
+                driverRecords.getInfo()
         );
 
     }
